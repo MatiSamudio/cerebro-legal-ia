@@ -1,6 +1,7 @@
 import requests
 import json
 from dotenv import load_dotenv
+from procesador_archivos import extraer_texto_pdf, extraer_texto_imagen 
 import os
 
 load_dotenv()
@@ -18,7 +19,7 @@ def explicar_legal(texto):
     }
 
     payload = {
-        "model": "deepseek/deepseek-r1:free",
+        "model": "deepseek/deepseek-chat-v3-0324:free",
         "messages": [
             {
                 "role": "user",
@@ -61,7 +62,7 @@ def red_flags(texto):
     )
 
     payload = {
-        "model": "deepseek/deepseek-r1:free",
+        "model": "deepseek/deepseek-chat-v3-0324:free",
         "messages": [
             {
                 "role": "user",
@@ -90,7 +91,7 @@ def revision_de_permisos(texto):
     }
 
     payload = {
-        "model": "deepseek/deepseek-r1:free",
+        "model": "deepseek/deepseek-chat-v3-0324:free",
         "messages": [
             {
                 "role": "user",
@@ -109,35 +110,40 @@ def revision_de_permisos(texto):
         return f" Error al conectarse a OpenRouter: {e}"
 
 
-
 def main():
     print(" CerebroLegal - Versión Consola")
     print("=" * 50)
     
-    opcion = input("Opcion que quieres que cerebro legal haga : Explicacion simplificada (A). Busqueda de Red Flags en Doc/Contrato(B). Revsion de permisos/derechos otorgados por cada parte(C)").lower() #Ususario decide la accion de cerebro
+    archivo = input("Arrastrá tu archivo PDF o imagen:\n").strip()
+    archivo = archivo.strip('"').strip("'").replace("& '", "").replace("'", "")
+    archivo = os.path.normpath(archivo)
+
+# Detectar el tipo de archivo y extraer texto
+    if archivo.lower().endswith(".pdf"):
+        texto = extraer_texto_pdf(archivo)
+    else:
+        texto = extraer_texto_imagen(archivo)
+
 
     print("=" * 50)
 
-    if opcion == "a":
-        texto = input("Pegá el texto legal que querés entender:\n\n")
-        print("\n Explicación simplificada:\n")
+    print("¿Qué querés hacer con el texto?")
+    print("1. Explicarlo de forma simple")
+    print("2. Detectar posibles red flags")
+    print("3. Analizar permisos/derechos de cada parte")
+    
+    opcion = input("Elegí una opción (1; 2 o 3):")
+
+    if opcion == "1":
         resultado = explicar_legal(texto)
-        print(resultado)
-
-    elif opcion == "b":
-        texto = input("Ingresa el Doc/Contrato:\n\n")
-        print("\n Posibles red flags:\n")
+    elif opcion == "2":
         resultado = red_flags(texto)
-        print(resultado)
-
-    elif opcion == "c":
-        texto = input("Ingresa Doc/Contrato:\n\n")
-        print("\n Analsis de forma clara:\n")
+    elif opcion == "3":
         resultado = revision_de_permisos(texto)
-        print(resultado)
+    else:
+        resultado = "Opción no válida."
 
-
-
+    print(resultado)
 
 if __name__ == "__main__":
     main()

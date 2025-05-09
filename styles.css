@@ -1,0 +1,336 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(
+                rgba(245, 232, 210, 0.8),
+                rgba(240, 220, 200, 0.9)),
+                url('https://img.freepik.com/fotos-premium/mazo-juez-madera-filtro-perfil-libro-leyes-escala-dorada-sobre-fondo-madera_34259-440.jpg?semt=ais_hybrid&w=740');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  
+  .fondo-derecha {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 45vw;
+    height: 100vh;
+    background-image: linear-gradient(
+                        rgba(245, 232, 210, 0.7),
+                        rgba(240, 220, 200, 0.8)),
+                        url('https://img.freepik.com/foto-gratis/primer-plano-escala-ley_23-2151889561.jpg?semt=ais_hybrid&w=740');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: sepia(0.3) brightness(0.95) contrast(0.9);
+    opacity: 0.35;
+    z-index: 0;
+  }
+  
+  .contenedor {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 250, 240, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 35px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(245, 225, 200, 0.6);
+    flex: 1; 
+    margin: 30px auto;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4b3621;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 120px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 15px;
+    background-color: #fdfaf5;
+  }
+  
+  select, input[type="file"], button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f5ede0;
+  }
+  
+  .fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .fila button {
+    flex: 1;
+    min-width: 100px;
+    background-color: #d4a373;
+    color: white;
+    border: none;
+  }
+  
+  .fila button:hover {
+    background-color: #b07a50;
+  }
+  
+  .salida {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    background-color: #fffdf7;
+    color: #3a2e1f;
+  }
+  
+  .descargar-btn {
+    margin-top: 10px;
+    background-color: #8b5e3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .descargar-btn:hover {
+    background-color: #6e4729;
+  }
+  
+  @media (max-width: 768px) {
+    .fondo-derecha {
+      display: none;
+    }
+  }
+
+  .spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #d4a373;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: girar 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+  }
+  
+  @keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .spinner.mostrar {
+    display: block;
+  }
+  
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b4b3e;
+    padding: 15px;
+    background: rgba(255, 245, 230, 0.8);
+    border-top: 1px solid #e3cbb1;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  /* Modernización visual sutil */
+  textarea::placeholder {
+    color: #a58e79;
+  }
+  button, input[type="file"] {
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  button:hover {
+    transform: translateY(-2px);
+  }
+  h1 {
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Añade esto al final de tu archivo CSS */
+
+/* Contenedor principal mejorado */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh; /* Asegura que el contenedor ocupe al menos el 80% del viewport */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  }
+  
+  /* Footer centrado y posicionado correctamente */
+  .footer {
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6b4b3e;
+    padding: 15px;
+    background: rgba(255, 245, 230, 0.8);
+    border-top: 1px solid #e3cbb1;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    bottom: 0;
+  }
+  
+  /* Uniformización de botones */
+  button, input[type="file"], .descargar-btn {
+    font-size: 1rem;
+    padding: 12px 20px; /* Mismo padding para todos */
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    background-color: #d4a373;
+    color: white;
+    cursor: pointer;
+    width: 100%; /* Mismo ancho */
+    max-width: 200px; /* Ancho máximo consistente */
+    text-align: center;
+    transition: all 0.3s ease;
+    display: inline-block; /* Para que el ancho funcione correctamente */
+  }
+  
+  /* Efecto hover consistente */
+  button:hover, input[type="file"]:hover, .descargar-btn:hover {
+    background-color: #b07a50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Contenedor para los botones de acción */
+  .botones-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Estilo específico para el input file */
+  input[type="file"] {
+    background-color: #f5ede0;
+    color: #4b3621;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Ajuste para el botón de enviar */
+  .fila button {
+    width: auto;
+    padding: 12px 30px;
+  }
+
+  /* Nuevos estilos para uniformizar botones */
+.btn-uniforme {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 10px;
+    background-color: #d4a373;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+    text-align: center;
+  }
+  
+  .btn-uniforme:hover {
+    background-color: #b07a50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Grupos de botones */
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  .grupo-botones .btn-uniforme {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  /* Estilo especial para el input file */
+  .btn-archivo {
+    background-color: #f5ede0;
+    color: #4b3621;
+    border: 1px solid #d4a373 !important;
+    cursor: pointer;
+  }
+  
+  .grupo-archivo {
+    text-align: center;
+    margin: 15px 0;
+  }
+  
+  #nombre-archivo {
+    display: block;
+    margin-top: 5px;
+    color: #6b4b3e;
+    font-size: 0.9rem;
+  }
+  
+  /* Botones especiales */
+  .btn-enviar {
+    background-color: #8b5e3c;
+    margin-top: 20px;
+  }
+  
+  .btn-descargar {
+    background-color: #6e4729;
+    margin: 20px auto;
+  }
+  
+  .instrucciones {
+    text-align: center;
+    color: #6b4b3e;
+    margin-bottom: 10px;
+  }
+  
+  /* Footer mejorado */
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }

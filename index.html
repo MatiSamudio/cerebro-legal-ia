@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pocket Attorney</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://emojicdn.elk.sh/" type="image/png">
+</head>
+<body>
+
+  <div class="fondo-derecha"></div>
+
+  <div class="contenedor">
+    <header>
+      <span style="font-size: 1.8rem;"></span>
+      <h1>Pocket Attorney</h1>
+    </header>
+
+    <p class="instrucciones">Pegue un texto o cargue un documento PDF/imagen</p>
+
+    <textarea id="texto" placeholder="Ejemplo: 'El contrato establece que...'"></textarea>
+
+
+    <div class="grupo-botones">
+      <button class="btn-uniforme" onclick="analizarTexto('redflags')">Revison RedFlags</button>
+      <button class="btn-uniforme" onclick="analizarTexto('permisos')">Revisión de Permisos</button>
+      <button class="btn-uniforme" onclick="analizarTexto('explicacion')">Explicación Sencilla</button>
+    </div>
+
+
+    <div class="grupo-archivo">
+      <label for="archivo" class="btn-uniforme btn-archivo">
+         Elegir archivo
+        <input type="file" id="archivo" style="display: none;">
+      </label>
+      <span id="nombre-archivo">No se ha seleccionado ningún archivo</span>
+    </div>
+
+
+    <button class="btn-uniforme btn-enviar" onclick="analizarTexto()">Enviar</button>
+
+    <div id="spinner" class="spinner"></div>
+    <div class="salida" id="salida"></div>
+
+
+    <button class="btn-uniforme btn-descargar" onclick="descargarResultado()">Descargar Resultado</button>
+  </div>
+
+  <footer class="footer">
+    <p>Pocket Attorney © 2025 — Hecho con ♥ por un equipo apasionado por la IA y el acceso a la justicia.</p>
+  </footer>
+
+  <script src="funciones.js"></script>
+  
+  <script>
+
+    document.getElementById('archivo').addEventListener('change', function(e) {
+      const nombre = e.target.files[0]?.name || "No se ha seleccionado ningún archivo";
+      document.getElementById('nombre-archivo').textContent = nombre;
+    });
+  </script>
+</body>
+</html>
